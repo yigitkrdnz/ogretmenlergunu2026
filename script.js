@@ -128,9 +128,7 @@ function showAccessMessage(message) {
             font-weight:bold;
             letter-spacing:3px;
         ">
-           ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠
-            GİRİŞ TALEBİNİZ ENGELLENDİ
-           ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠
+         ⚠ GİRİŞ TALEBİNİZ ENGELLENDİ ⚠
         </div>
 
         <div style="
@@ -236,14 +234,11 @@ async function verifyTeacherAccess() {
         showScreen(welcome);
 
     } catch (error) {
-
-        console.error("Öğretmen doğrulama hatası:", error);
-
-        showAccessMessage(
-            "Öğretmen bilgisi bulunamadı. Lütfen size özel QR kodunu kontrol edin."
-        );
-
-    } finally {
+    console.error("Öğretmen doğrulama hatası:", error);
+    showAccessMessage(
+        "Bağlantı doğrulanamadı: " + error.message
+    );
+} finally {
 
         requestInProgress = false;
 
