@@ -5,79 +5,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#764e3f">
+    <meta name="theme-color" content="#17130f">
 
-    <meta name="description" content="Okulumuzun en kıymetli öğretmenlerine özel mektuplar.">
+    <meta name="description" content="Okulumuzun kıymetli öğretmenlerine sevgi, saygı ve minnetle hazırlanmış özel mektuplar.">
 
-    <title>Okulumuzun En Kıymetli Öğretmenlerine</title>
+    <title>Bir Ömürlük İz | 24 Kasım Öğretmenler Günü</title>
 
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=3">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
 
-    <!-- KARŞILAMA EKRANI -->
+    <!-- =====================================
+         1. KARŞILAMA EKRANI
+    ====================================== -->
+
     <section id="welcome" class="welcome-screen">
 
-        <div class="welcome-content">
+        <div class="welcome-frame">
 
-            <p class="eyebrow">24 KASIM · ÖĞRETMENLER GÜNÜ</p>
+            <div class="welcome-top">
+                ✦ 24 KASIM · ÖĞRETMENLER GÜNÜ ✦
+            </div>
 
-            <h1>Bir Ömürlük <span>İz...</span></h1>
+            <div class="welcome-line"></div>
+
+            <h1>Bir Ömürlük İz...</h1>
+
+            <div class="welcome-ornament">
+                ✦ ❧ ✦
+            </div>
 
             <p class="welcome-description">
-                Bir insanın hayatına dokunmak, ona yalnızca bilgi öğretmekten çok daha fazlasıdır.
-                Bazen bir cümleyle yol gösterir, bazen bir öğütle umut verir, bazen de farkında
-                olmadan bir ömre ışık olursunuz.
+                Bir insanın hayatına dokunmak, ona yalnızca bilgi
+                öğretmekten çok daha fazlasıdır.
+
+                Bazen bir cümleyle yol gösterir, bazen bir öğütle
+                umut verir, bazen de farkında olmadan bir ömre
+                ışık olursunuz.
 
                 <strong>
-                    Bugün, hayatımızda bıraktığınız izleri ve bizlere kattığınız değerleri
-                    hatırlamak için buradayız.
+                    Bugün, hayatımızda bıraktığınız izleri ve
+                    bizlere kattığınız değerleri hatırlamak için
+                    buradayız.
                 </strong>
             </p>
 
-            <p class="welcome-signature">
-                24 Kasım Öğretmenler Günü'nüz kutlu olsun.
-            </p>
+            <div class="welcome-divider">
+                ✦ ━━━━━━━━━ ✦
+            </div>
 
-            <button id="continueButton" class="main-button">
-                Mektuplarınıza Göz Atın
+            <button id="continueButton" class="welcome-button">
+                Mektuplara Göz At
+                <span>→</span>
             </button>
-          <p class="welcome-credit">
-    Bilişim Öğrencileri Tarafından Sevgi, Saygı Ve Emekle Hazırlanmıştır...
-          </p>
+
+            <div class="welcome-footer">
+                Sevgi, saygı ve minnetle...
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- MEKTUP LİSTESİ -->
+    <!-- =====================================
+         2. ÖĞRETMEN MEKTUP EKRANI
+    ====================================== -->
+
     <section id="letterSection" class="letter-section" hidden>
 
         <header class="section-header">
 
-            <p class="eyebrow">SİZE ÖZEL HAZIRLANDI</p>
+            <p class="eyebrow">
+                SİZE ÖZEL HAZIRLANDI
+            </p>
 
             <h1 id="displayTeacherName"></h1>
 
             <p class="section-description">
-                Sizin için yazılmış mektupları keşfedin.
+                Sizin için sevgi ve saygıyla yazılmış mektupları keşfedin.
             </p>
 
         </header>
 
 
         <!-- MEKTUP ZARFLARI -->
+
         <div id="letterListScreen" class="letter-list-screen">
 
             <div id="letterGrid" class="letter-grid">
-                <!-- Zarflar JavaScript ile oluşturulacak. -->
+                <!-- Mektup zarfları JavaScript tarafından oluşturulur. -->
             </div>
 
             <p id="emptyLettersMessage" hidden>
@@ -87,7 +112,8 @@
         </div>
 
 
-        <!-- SEÇİLEN MEKTUP -->
+        <!-- MEKTUP DETAY EKRANI -->
+
         <div id="letterDetailScreen" class="letter-detail-screen" hidden>
 
             <div class="letter-detail-actions">
@@ -116,8 +142,13 @@
                     <div id="letterContent" class="letter-content"></div>
 
                     <div class="letter-ending">
+
                         <p>Saygı ve sevgilerimle,</p>
-                        <p class="signature">Bir öğrenciniz</p>
+
+                        <p class="signature">
+                            Bir öğrenciniz
+                        </p>
+
                     </div>
 
                 </div>
@@ -127,7 +158,8 @@
         </div>
 
 
-        <!-- ALT EKRAN BUTONLARI -->
+        <!-- ALT MENÜ -->
+
         <div id="letterFooter" class="letter-footer">
 
             <button id="finalButton" class="secondary-button">
@@ -143,19 +175,24 @@
     </section>
 
 
-    <!-- MÜDÜR MESAJI -->
+    <!-- =====================================
+         3. OKUL MÜDÜRÜNÜN MESAJI
+    ====================================== -->
+
     <section id="finalScreen" class="final-screen" hidden>
 
         <div class="final-content">
 
-            <p class="eyebrow">ÖZEL MESAJ</p>
+            <p class="eyebrow">
+                ÖZEL MESAJ
+            </p>
 
             <h1>Okul Müdürümüzden</h1>
 
             <div id="principalMessage"></div>
 
             <button id="finalBackButton" class="secondary-button">
-                Mektuplara Dön
+                ← Mektuplara Dön
             </button>
 
         </div>
@@ -163,12 +200,17 @@
     </section>
 
 
-    <!-- ATATÜRK EKRANI -->
+    <!-- =====================================
+         4. ATATÜRK'ÜN ÖĞRETMENLERE MESAJI
+    ====================================== -->
+
     <section id="ataturkScreen" class="ataturk-screen" hidden>
 
         <div class="ataturk-content">
 
-            <p class="eyebrow">BAŞÖĞRETMEN ATATÜRK</p>
+            <p class="eyebrow">
+                BAŞÖĞRETMEN ATATÜRK
+            </p>
 
             <h1>Bir Milletin Geleceği</h1>
 
@@ -179,11 +221,20 @@
                 </p>
 
                 <p>
-                    Yeni nesli, Cumhuriyet'in fedakâr öğretmen ve eğitimcileri, sizler yetiştireceksiniz; yeni nesil sizin eseriniz olacaktır.
-                    Eserin kıymeti, sizin beceriniz ve fedakârlığınızın derecesiyle orantılı olacaktır.
-                    Cumhuriyet; fikren, ilmen, fennen, bedenen kuvvetli ve yüksek karakterli muhafızlar ister.
-                    Yeni nesli bu nitelik ve kabiliyette yetiştirmek sizin elinizdedir.
-                    Mümtaz vazifenizin yerine getirilmesine büyük bir özenle varlığınızı vereceğinize hiç şüphe etmem.
+                    Yeni nesli, Cumhuriyet'in fedakâr öğretmen ve
+                    eğitimcileri, sizler yetiştireceksiniz; yeni nesil
+                    sizin eseriniz olacaktır.
+
+                    Eserin kıymeti, sizin beceriniz ve fedakârlığınızın
+                    derecesiyle orantılı olacaktır.
+
+                    Cumhuriyet; fikren, ilmen, fennen, bedenen kuvvetli
+                    ve yüksek karakterli muhafızlar ister.
+
+                    Yeni nesli bu nitelik ve kabiliyette yetiştirmek
+                    sizin elinizdedir. Mümtaz vazifenizin yerine
+                    getirilmesine büyük bir özenle varlığınızı
+                    vereceğinize hiç şüphe etmem.
                 </p>
 
                 <p>
@@ -191,11 +242,24 @@
                 </p>
 
                 <p>
-                    Erkek ve kız çocuklarımızın, aynı suretle bütün tahsil derecelerindeki talim ve terbiyelerinin pratik olması mühimdir.
-                    Memleket evladı, her tahsil derecesinde ekonomik hayatta verimli, etkili ve başarılı olacak surette donatılmalıdır.
+                    Erkek ve kız çocuklarımızın, aynı suretle bütün
+                    tahsil derecelerindeki talim ve terbiyelerinin
+                    pratik olması mühimdir.
+
+                    Memleket evladı, her tahsil derecesinde ekonomik
+                    hayatta verimli, etkili ve başarılı olacak surette
+                    donatılmalıdır.
+
                     Milli terbiyemiz esas olmalıdır.
-                    Artık eğitim ve öğretimde takip edeceğimiz yöntem, bilgiyi insan için fazla bir süs, bir baskı aracı yahut medeni bir zevkten ziyade, maddi hayatta muvaffak olmayı temin eden pratik ve kullanılması mümkün bir cihaz haline getirmektir.
-                    Dünyanın her tarafından öğretmenler insan topluluğunun en fedakâr ve muhterem unsurlarıdır.
+
+                    Artık eğitim ve öğretimde takip edeceğimiz yöntem,
+                    bilgiyi insan için fazla bir süs, bir baskı aracı
+                    yahut medeni bir zevkten ziyade, maddi hayatta
+                    muvaffak olmayı temin eden pratik ve kullanılması
+                    mümkün bir cihaz haline getirmektir.
+
+                    Dünyanın her tarafından öğretmenler insan
+                    topluluğunun en fedakâr ve muhterem unsurlarıdır.
                 </p>
 
                 <p>
@@ -209,7 +273,7 @@
             </div>
 
             <button id="ataturkBackButton" class="secondary-button">
-                Mektuplara Dön
+                ← Mektuplara Dön
             </button>
 
         </div>
@@ -217,7 +281,8 @@
     </section>
 
 
-   <script src="script.js?v=3" defer></script>
+    <!-- JAVASCRIPT -->
+    <script src="script.js?v=3" defer></script>
 
 </body>
 </html>
