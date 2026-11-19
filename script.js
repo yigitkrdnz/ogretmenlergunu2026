@@ -7,8 +7,7 @@
 
 /* API BAĞLANTISI */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwz5M-cbtk-kKiux-smXtsBKGXuNpFeqUpUTHv5X0ItB7aZslI98Uz_2vo0E0aLW8L/exec";
-
+const API_URL = "https://script.google.com/macros/s/AKfycbwz5M-cbtk-kKiux-smXtsBKGXuNpFeqUpUTHv5X0ItB7aZslI98Uz_2vo0E0aLW8LZ/exec";
 
 /* HTML ELEMENTLERİ */
 
