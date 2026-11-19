@@ -1399,3 +1399,155 @@ button {
         font-size: 23px;
     }
 }
+
+
+
+/* =================================
+   MÜHÜRLÜ ANTİK MEKTUP ZARFLARI
+================================= */
+
+.mektup-karti {
+    cursor: pointer;
+    perspective: 900px;
+}
+
+.mektup-zarf {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: 230px;
+    height: 100%;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(145deg,
+            #493020 0%,
+            #302017 48%,
+            #24150f 100%);
+
+    border: 1px solid #a88954;
+    border-radius: 5px;
+
+    box-shadow:
+        inset 0 0 0 5px #302017,
+        inset 0 0 0 6px rgba(190, 157, 99, 0.45),
+        0 8px 20px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Zarfın üçgen kapağı */
+
+.mektup-zarf::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+
+    background: linear-gradient(
+        145deg,
+        #715037,
+        #493020 70%,
+        #382318
+    );
+
+    clip-path: polygon(0 0, 100% 0, 50% 75%);
+
+    border-bottom: 1px solid #b99a64;
+    opacity: 0.95;
+}
+
+/* Altın mühür */
+
+.mektup-zarf::after {
+    content: "✦";
+    position: absolute;
+    z-index: 3;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f1d59a;
+    font-size: 21px;
+
+    background:
+        radial-gradient(circle,
+            #a77b3e 0%,
+            #785026 65%,
+            #49301d 100%);
+
+    border: 2px solid #d4b477;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 3px rgba(189, 153, 91, 0.25),
+        0 3px 9px rgba(0, 0, 0, 0.4);
+}
+
+/* Zarf numarası */
+
+.mektup-zarf .mektup-sayi {
+    position: absolute;
+    top: 17px;
+    left: 19px;
+    z-index: 4;
+
+    color: #d2b477;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    opacity: 0.9;
+}
+
+/* Zarf üzerindeki başlık */
+
+.mektup-zarf .letter-card-title {
+    position: relative;
+    z-index: 4;
+    margin-top: 85px;
+
+    color: #f0dfc0;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    text-align: center;
+    opacity: 1;
+}
+
+/* Alt yazı */
+
+.mektup-zarf .letter-card-subtitle {
+    position: relative;
+    z-index: 4;
+    margin-top: 8px;
+
+    color: #c5a879;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    text-align: center;
+    opacity: 1;
+}
+
+/* Zarif hover efekti */
+
+.mektup-karti:hover .mektup-zarf {
+    transform: translateY(-5px);
+
+    box-shadow:
+        inset 0 0 0 5px #302017,
+        inset 0 0 0 6px #c6a46a,
+        0 12px 25px rgba(0, 0, 0, 0.4);
+}
