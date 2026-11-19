@@ -1,15 +1,16 @@
 
 /* =========================================
    24 KASIM ÖĞRETMENLER GÜNÜ
-   ÖĞRETMEN MEKTUP SİSTEMİ
+   ANA JAVASCRIPT DOSYASI
 ========================================= */
 
 
-/* API BAĞLANTISI */
+/* 1. API BAĞLANTISI */
 
 const API_URL = "https://script.google.com/macros/s/AKfycbwz5M-cbtk-kKiux-smXtsBKGXuNpFeqUpUTHv5X0ItB7aZslI98Uz_2vo0E0aLW8LZ/exec";
 
-/* HTML ELEMENTLERİ */
+
+/* 2. HTML ELEMANLARI */
 
 const welcome = document.getElementById("welcome");
 const letterSection = document.getElementById("letterSection");
@@ -40,39 +41,57 @@ const ataturkScreen = document.getElementById("ataturkScreen");
 const ataturkBackButton = document.getElementById("ataturkBackButton");
 
 
-/* DEĞİŞKENLER */
+/* 3. UYGULAMA DEĞİŞKENLERİ */
 
 let currentTeacher = null;
 let selectedLetter = null;
 let requestInProgress = false;
 
 
-/* EKRAN YÖNETİMİ */
+/* 4. EKRAN YÖNETİMİ */
 
 function hideAllScreens() {
-    welcome.hidden = true;
-    letterSection.hidden = true;
-    finalScreen.hidden = true;
-    ataturkScreen.hidden = true;
 
-    welcome.style.display = "none";
-    letterSection.style.display = "none";
-    finalScreen.style.display = "none";
-    ataturkScreen.style.display = "none";
+    const screens = [
+        welcome,
+        letterSection,
+        finalScreen,
+        ataturkScreen
+    ];
+
+    screens.forEach(screen => {
+
+        if (!screen) return;
+
+        screen.hidden = true;
+        screen.style.display = "none";
+
+    });
+
 }
 
 
 function showScreen(screen) {
+
+    if (!screen) return;
+
     hideAllScreens();
 
     screen.hidden = false;
     screen.style.display = "";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
 
-/* QR KODU / TOKEN OKUMA */
+/* 5. QR KODU OKUMA */
 
 function getTeacherToken() {
+
     const params = new URLSearchParams(window.location.search);
 
     return (
@@ -80,101 +99,88 @@ function getTeacherToken() {
         params.get("token") ||
         ""
     ).trim().toLowerCase();
+
 }
 
 
-/* ERİŞİM UYARISI */
+/* 6. ERİŞİM UYARISI */
 
 function showAccessMessage(message) {
+
     hideAllScreens();
 
     let accessScreen = document.getElementById("accessScreen");
 
     if (!accessScreen) {
+
         accessScreen = document.createElement("section");
 
         accessScreen.id = "accessScreen";
 
         accessScreen.style.cssText = `
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            box-sizing: border-box;
-            background: #15120f;
-            color: #F2E8D5;
-            text-align: center;
-            font-family: 'Cormorant Garamond', serif;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:25px;
+            box-sizing:border-box;
+            background:#15120f;
+            color:#F2E8D5;
+            text-align:center;
+            font-family:'Cormorant Garamond',serif;
         `;
 
         document.body.appendChild(accessScreen);
+
     }
 
-    accessScreen.innerHTML = `
-    <div style="max-width:600px;">
+    accessScreen.innerHTML = "";
 
-        <div style="
-            display:inline-block;
-            padding:12px 16px;
-            margin-bottom:30px;
-            border:1px solid #a83232;
-            border-radius:5px;
-            background:rgba(168,50,50,0.13);
-            color:#e05252;
-            font-family:Arial,sans-serif;
-            font-size:15px;
-            font-weight:bold;
-            letter-spacing:3px;
-        ">
-         ⚠ GİRİŞ TALEBİNİZ ENGELLENDİ ⚠
-        </div>
+    const content = document.createElement("div");
 
-        <div style="
-            color:#B08D45;
-            font-size:32px;
-            margin-bottom:20px;
-        ">
-            ˚⊱─── ⋆⋅☆⋅⋆ ───⊰˚
-        </div>
+    content.style.maxWidth = "600px";
 
-        <h1 style="
-            color:#D4AF65;
-            font-size:36px;
-            margin-bottom:15px;
-        ">
-            Özel Davet
-        </h1>
+    const ornament = document.createElement("div");
 
-        <p style="
-            font-size:21px;
-            line-height:1.6;
-            color:#F2E8D5;
-        ">
-            ${escapeHTML(message)}
-        </p>
+    ornament.textContent = "˚⊱─── ⋆⋅☆⋅⋆ ───⊰˚";
+    ornament.style.cssText = `
+        color:#B08D45;
+        font-size:30px;
+        margin-bottom:20px;
+    `;
 
-        <div style="
-            color:#B08D45;
-            font-size:25px;
-            margin-top:25px;
-        ">
-            ⚚ ════════ ⚚
-        </div>
+    const heading = document.createElement("h1");
 
-    </div>
-`;
+    heading.textContent = "Özel Davet";
+    heading.style.cssText = `
+        color:#D4AF65;
+        font-size:36px;
+    `;
+
+    const description = document.createElement("p");
+
+    description.textContent = message;
+    description.style.cssText = `
+        font-size:21px;
+        line-height:1.6;
+        color:#F2E8D5;
+    `;
+
+    content.append(ornament, heading, description);
+    accessScreen.appendChild(content);
 
     accessScreen.hidden = false;
     accessScreen.style.display = "flex";
+
 }
 
 
-/* ÖĞRETMEN VERİLERİNİ GETİRME */
+/* 7. ÖĞRETMEN VERİLERİNİ GETİRME */
 
 async function getTeacherLetters(slug) {
 
-    const url = `${API_URL}?ogretmen=${encodeURIComponent(slug)}`;
+    const url =
+        `${API_URL}?ogretmen=${encodeURIComponent(slug)}`;
 
     const response = await fetch(url);
 
@@ -185,31 +191,40 @@ async function getTeacherLetters(slug) {
     const result = await response.json();
 
     if (!result.success) {
-        throw new Error(result.message || "Öğretmen bulunamadı.");
+        throw new Error(
+            result.message || "Öğretmen bulunamadı."
+        );
     }
 
     return {
+
         name: result.teacher,
-        letters: Array.isArray(result.letters) ? result.letters : [],
+
+        letters: Array.isArray(result.letters)
+            ? result.letters
+            : [],
+
         principalMessage: result.ataturkMessage || ""
+
     };
+
 }
 
 
-/* QR KODU DOĞRULAMA */
+/* 8. QR KODU DOĞRULAMA */
 
 async function verifyTeacherAccess() {
 
     const token = getTeacherToken();
 
-    // QR kodu yoksa hiçbir açılış ekranını gösterme.
-
     if (!token) {
+
         showAccessMessage(
-            "Bu sayfaya erişebilmek için size özel QR kodu okutmanız gerekiyor."
+            "Bu sayfaya erişebilmek için size özel QR kodunu okutmanız gerekiyor."
         );
 
         return;
+
     }
 
     if (requestInProgress) return;
@@ -222,38 +237,39 @@ async function verifyTeacherAccess() {
 
         currentTeacher = data;
 
-        // Öğretmen bilgileri geldiyse açılış ekranını göster.
-
-        if (displayTeacherName) {
-            displayTeacherName.textContent = data.name;
-        }
-
-        // Açılış ekranı ancak geçerli öğretmen bulunduğunda açılır.
+        displayTeacherName.textContent = data.name;
 
         showScreen(welcome);
 
     } catch (error) {
-    console.error("Öğretmen doğrulama hatası:", error);
-    showAccessMessage(
-        "Bağlantı doğrulanamadı: " + error.message
-    );
-} finally {
+
+        console.error(
+            "Öğretmen doğrulama hatası:",
+            error
+        );
+
+        showAccessMessage(
+            "Bağlantı doğrulanamadı: " + error.message
+        );
+
+    } finally {
 
         requestInProgress = false;
 
     }
+
 }
 
 
-/* MEKTUP LİSTESİNİ OLUŞTURMA */
+/* 9. MÜHÜRLÜ ZARF OLUŞTURMA */
 
 function createLetterCards() {
 
     letterGrid.innerHTML = "";
 
-    const letters = currentTeacher.letters;
+    const letters = currentTeacher?.letters || [];
 
-    if (!letters || letters.length === 0) {
+    if (letters.length === 0) {
 
         emptyLettersMessage.hidden = false;
         return;
@@ -264,34 +280,59 @@ function createLetterCards() {
 
     letters.forEach((letter, index) => {
 
-        const card = document.createElement("div");
+        const card = document.createElement("button");
 
+        card.type = "button";
         card.className = "letter-card";
 
-        card.innerHTML = `
-            <div class="letter-envelope">
+        card.setAttribute(
+            "aria-label",
+            `${index + 1}. mektubu aç`
+        );
 
-                <div class="letter-number">
-                    ${String(index + 1).padStart(2, "0")}
-                </div>
+        const envelope = document.createElement("div");
 
-                <div class="letter-card-title">
-                    Bir Öğrencinizden
-                </div>
+        envelope.className = "letter-envelope";
 
-                <div class="letter-card-subtitle">
-                    Sevgi ve saygıyla...
-                </div>
+        const number = document.createElement("div");
 
-                <div class="letter-card-decoration">
-                    ❧
-                </div>
+        number.className = "letter-number";
+        number.textContent = String(index + 1).padStart(2, "0");
 
-            </div>
-        `;
+        const title = document.createElement("div");
+
+        title.className = "letter-card-title";
+        title.textContent = "Bir Öğrencinizden";
+
+        const subtitle = document.createElement("div");
+
+        subtitle.className = "letter-card-subtitle";
+        subtitle.textContent = "Sevgi ve saygıyla...";
+
+        const seal = document.createElement("div");
+
+        seal.className = "letter-seal";
+        seal.textContent = "✦";
+
+        const decoration = document.createElement("div");
+
+        decoration.className = "letter-card-decoration";
+        decoration.textContent = "❧";
+
+        envelope.append(
+            number,
+            title,
+            subtitle,
+            seal,
+            decoration
+        );
+
+        card.appendChild(envelope);
 
         card.addEventListener("click", () => {
+
             openLetter(letter);
+
         });
 
         letterGrid.appendChild(card);
@@ -301,15 +342,17 @@ function createLetterCards() {
 }
 
 
-/* MEKTUP AÇMA */
+/* 10. MEKTUP AÇMA */
 
 function openLetter(letter) {
+
+    if (!currentTeacher || !letter) return;
 
     selectedLetter = letter;
 
     letterTeacherName.textContent = currentTeacher.name;
 
-    letterContent.textContent = letter.content;
+    letterContent.textContent = letter.content || "";
 
     letterListScreen.hidden = true;
     letterListScreen.style.display = "none";
@@ -317,12 +360,18 @@ function openLetter(letter) {
     letterDetailScreen.hidden = false;
     letterDetailScreen.style.display = "";
 
+    letterFooter.hidden = true;
     letterFooter.style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
-/* MEKTUP LİSTESİNE DÖNME */
+/* 11. MEKTUPLARA GERİ DÖN */
 
 function closeLetter() {
 
@@ -334,81 +383,93 @@ function closeLetter() {
     letterListScreen.hidden = false;
     letterListScreen.style.display = "";
 
+    letterFooter.hidden = false;
     letterFooter.style.display = "";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
-/* PDF OLARAK KAYDETME */
+/* 12. PDF OLARAK KAYDETME */
 
 function saveLetterAsPDF() {
 
     if (!selectedLetter || !currentTeacher) {
+
+        alert("Önce bir mektup seçmelisiniz.");
         return;
+
     }
 
     const printWindow = window.open("", "_blank");
 
     if (!printWindow) {
+
         alert("PDF kaydetmek için açılır pencereye izin vermelisiniz.");
         return;
+
     }
 
-    const teacherName = currentTeacher.name;
-    const content = selectedLetter.content;
+    const teacherName = escapeHTML(currentTeacher.name);
+    const content = escapeHTML(selectedLetter.content || "");
 
     printWindow.document.write(`
+
         <!DOCTYPE html>
+
         <html lang="tr">
 
         <head>
 
             <meta charset="UTF-8">
 
-            <title>${teacherName} - Öğretmenler Günü Mektubu</title>
+            <title>${teacherName} - Öğretmenler Günü</title>
 
             <style>
 
                 body {
-                    background: #fff;
-                    color: #222;
-                    font-family: Georgia, serif;
-                    padding: 55px;
-                    line-height: 1.8;
+                    background:#fff;
+                    color:#222;
+                    font-family:Georgia,serif;
+                    padding:55px;
+                    line-height:1.8;
                 }
 
                 .paper {
-                    max-width: 750px;
-                    margin: auto;
+                    max-width:750px;
+                    margin:auto;
                 }
 
                 .eyebrow {
-                    text-align: center;
-                    color: #9b793d;
-                    letter-spacing: 2px;
-                    font-size: 12px;
-                    margin-bottom: 45px;
+                    text-align:center;
+                    color:#9b793d;
+                    letter-spacing:2px;
+                    margin-bottom:45px;
                 }
 
                 h1 {
-                    text-align: center;
-                    font-weight: normal;
-                    margin-bottom: 40px;
+                    text-align:center;
+                    font-weight:normal;
+                    margin-bottom:40px;
                 }
 
                 .content {
-                    white-space: pre-wrap;
-                    font-size: 16px;
+                    white-space:pre-wrap;
+                    font-size:16px;
                 }
 
                 .footer {
-                    margin-top: 60px;
-                    text-align: right;
+                    margin-top:60px;
+                    text-align:right;
                 }
 
                 @media print {
                     body {
-                        padding: 20px;
+                        padding:20px;
                     }
                 }
 
@@ -424,9 +485,9 @@ function saveLetterAsPDF() {
                     24 KASIM · ÖĞRETMENLER GÜNÜ
                 </div>
 
-                <h1>${escapeHTML(teacherName)}</h1>
+                <h1>${teacherName}</h1>
 
-                <div class="content">${escapeHTML(content)}</div>
+                <div class="content">${content}</div>
 
                 <div class="footer">
                     Saygı ve sevgilerimle...
@@ -435,24 +496,29 @@ function saveLetterAsPDF() {
             </div>
 
         </body>
+
         </html>
+
     `);
 
     printWindow.document.close();
 
     printWindow.onload = function () {
+
         printWindow.focus();
         printWindow.print();
+
     };
 
 }
 
 
-/* HTML GÜVENLİ METİN */
+/* 13. GÜVENLİ METİN */
 
 function escapeHTML(text) {
 
     return String(text)
+
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -462,7 +528,7 @@ function escapeHTML(text) {
 }
 
 
-/* MÜDÜR MESAJI */
+/* 14. OKUL MÜDÜRÜNÜN MESAJI */
 
 function openPrincipalMessage() {
 
@@ -477,7 +543,7 @@ function openPrincipalMessage() {
 }
 
 
-/* ATATÜRK MESAJI */
+/* 15. ATATÜRK'ÜN MESAJI */
 
 function openAtaturkMessage() {
 
@@ -486,9 +552,11 @@ function openAtaturkMessage() {
 }
 
 
-/* MEKTUP EKRANINA DÖNÜŞ */
+/* 16. MEKTUPLAR EKRANINA DÖNÜŞ */
 
 function returnToLetters() {
+
+    selectedLetter = null;
 
     showScreen(letterSection);
 
@@ -498,14 +566,13 @@ function returnToLetters() {
     letterDetailScreen.hidden = true;
     letterDetailScreen.style.display = "none";
 
+    letterFooter.hidden = false;
     letterFooter.style.display = "";
-
-    selectedLetter = null;
 
 }
 
 
-/* AÇILIŞ EKRANINDAN MEKTUPLARA GEÇİŞ */
+/* 17. MEKTUP LİSTESİNİ AÇMA */
 
 function openTeacherLetters() {
 
@@ -523,29 +590,51 @@ function openTeacherLetters() {
     letterDetailScreen.hidden = true;
     letterDetailScreen.style.display = "none";
 
+    letterFooter.hidden = false;
     letterFooter.style.display = "";
 
 }
 
 
-/* BUTONLAR */
+/* 18. BUTONLAR */
 
-continueButton.addEventListener("click", openTeacherLetters);
+continueButton.addEventListener(
+    "click",
+    openTeacherLetters
+);
 
-backButton.addEventListener("click", closeLetter);
+backButton.addEventListener(
+    "click",
+    closeLetter
+);
 
-saveLetterPdfButton.addEventListener("click", saveLetterAsPDF);
+saveLetterPdfButton.addEventListener(
+    "click",
+    saveLetterAsPDF
+);
 
-finalButton.addEventListener("click", openPrincipalMessage);
+finalButton.addEventListener(
+    "click",
+    openPrincipalMessage
+);
 
-finalBackButton.addEventListener("click", returnToLetters);
+finalBackButton.addEventListener(
+    "click",
+    returnToLetters
+);
 
-ataturkLetterButton.addEventListener("click", openAtaturkMessage);
+ataturkLetterButton.addEventListener(
+    "click",
+    openAtaturkMessage
+);
 
-ataturkBackButton.addEventListener("click", returnToLetters);
+ataturkBackButton.addEventListener(
+    "click",
+    returnToLetters
+);
 
 
-/* SAYFA AÇILDIĞINDA */
+/* 19. SAYFA AÇILIŞI */
 
 hideAllScreens();
 
