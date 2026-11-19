@@ -755,3 +755,191 @@ h2 {
     }
 
 }
+
+
+
+/* =================================
+   ÖĞRETMENLER GÜNÜ - AÇILIŞ EKRANI
+================================= */
+
+#welcome.welcome-screen {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 18px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #292016 0%,
+            #17130f 55%,
+            #090807 100%
+        );
+}
+
+#welcome .welcome-frame {
+    width: 100%;
+    max-width: 680px;
+    padding: 65px 35px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+
+    background: rgba(20, 16, 12, 0.72);
+    border: 1px solid #92713c;
+    outline: 1px solid rgba(201, 167, 101, 0.25);
+    outline-offset: 8px;
+
+    box-shadow:
+        0 0 35px rgba(0, 0, 0, 0.65),
+        inset 0 0 35px rgba(170, 125, 55, 0.04);
+}
+
+/* Köşe süsleri */
+
+#welcome .welcome-frame::before,
+#welcome .welcome-frame::after {
+    content: "✦";
+    position: absolute;
+    color: #c9a765;
+    font-size: 21px;
+}
+
+#welcome .welcome-frame::before {
+    top: 13px;
+    left: 17px;
+}
+
+#welcome .welcome-frame::after {
+    bottom: 13px;
+    right: 17px;
+}
+
+/* Üst yazı */
+
+#welcome .welcome-top {
+    color: #c9a765;
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+/* Altın çizgi */
+
+#welcome .welcome-line {
+    width: 75px;
+    height: 1px;
+    background: #a9874b;
+    margin: 0 auto 30px;
+}
+
+/* Ana başlık */
+
+#welcome .welcome-frame h1 {
+    color: #e4d2ad;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(43px, 8vw, 68px);
+    font-weight: 400;
+    font-style: italic;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Başlık altı süs */
+
+#welcome .welcome-ornament {
+    color: #bd9858;
+    font-size: 23px;
+    margin: 15px 0 25px;
+}
+
+/* Açıklama */
+
+#welcome .welcome-description {
+    color: #d2c4aa;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15px;
+    line-height: 2.1;
+    max-width: 470px;
+    margin: 0 auto;
+}
+
+/* Dekoratif ayraç */
+
+#welcome .welcome-divider {
+    color: #c9a765;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin: 35px 0;
+}
+
+/* Giriş butonu */
+
+#welcome .welcome-button {
+    padding: 15px 32px;
+    background: linear-gradient(
+        135deg,
+        #9b773e,
+        #6f5128
+    );
+    color: #fff1d3;
+    border: 1px solid #d0ad6b;
+    border-radius: 2px;
+
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#welcome .welcome-button span {
+    margin-left: 10px;
+}
+
+#welcome .welcome-button:hover {
+    background: linear-gradient(
+        135deg,
+        #b28d50,
+        #87652f
+    );
+    box-shadow: 0 0 20px rgba(201, 167, 101, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Alt yazı */
+
+#welcome .welcome-footer {
+    color: #a9926b;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    margin-top: 35px;
+}
+
+/* Mobil görünüm */
+
+@media (max-width: 600px) {
+    #welcome .welcome-frame {
+        padding: 50px 20px;
+    }
+
+    #welcome .welcome-top {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    #welcome .welcome-description {
+        font-size: 13px;
+    }
+
+    #welcome .welcome-button {
+        padding: 13px 23px;
+    }
+}
+
