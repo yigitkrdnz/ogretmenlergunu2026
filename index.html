@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#764e3f">
+
+    <meta name="description" content="Okulumuzun en kıymetli öğretmenlerine özel mektuplar.">
+
+    <title>Okulumuzun En Kıymetli Öğretmenlerine</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- KARŞILAMA EKRANI -->
+    <section id="welcome" class="welcome-screen">
+
+        <div class="welcome-content">
+
+            <p class="eyebrow">24 KASIM · ÖĞRETMENLER GÜNÜ</p>
+
+            <h1>Bir Ömürlük <span>İz...</span></h1>
+
+            <p class="welcome-description">
+                Bir insanın hayatına dokunmak, ona yalnızca bilgi öğretmekten çok daha fazlasıdır.
+                Bazen bir cümleyle yol gösterir, bazen bir öğütle umut verir, bazen de farkında
+                olmadan bir ömre ışık olursunuz.
+
+                <strong>
+                    Bugün, hayatımızda bıraktığınız izleri ve bizlere kattığınız değerleri
+                    hatırlamak için buradayız.
+                </strong>
+            </p>
+
+            <p class="welcome-signature">
+                24 Kasım Öğretmenler Günü'nüz kutlu olsun.
+            </p>
+
+            <button id="continueButton" class="main-button">
+                Mektuplarınıza Göz Atın
+            </button>
+          <p class="welcome-credit">
+    Bilişim Öğrencileri Tarafından Sevgi, Saygı Ve Emekle Hazırlanmıştır...
+          </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MEKTUP LİSTESİ -->
+    <section id="letterSection" class="letter-section" hidden>
+
+        <header class="section-header">
+
+            <p class="eyebrow">SİZE ÖZEL HAZIRLANDI</p>
+
+            <h1 id="displayTeacherName"></h1>
+
+            <p class="section-description">
+                Sizin için yazılmış mektupları keşfedin.
+            </p>
+
+        </header>
+
+
+        <!-- MEKTUP ZARFLARI -->
+        <div id="letterListScreen" class="letter-list-screen">
+
+            <div id="letterGrid" class="letter-grid">
+                <!-- Zarflar JavaScript ile oluşturulacak. -->
+            </div>
+
+            <p id="emptyLettersMessage" hidden>
+                Henüz görüntülenecek bir mektup bulunmuyor.
+            </p>
+
+        </div>
+
+
+        <!-- SEÇİLEN MEKTUP -->
+        <div id="letterDetailScreen" class="letter-detail-screen" hidden>
+
+            <div class="letter-detail-actions">
+
+                <button id="backButton" class="secondary-button">
+                    ← Mektuplara Dön
+                </button>
+
+                <button id="saveLetterPdfButton" class="main-button">
+                    PDF Olarak Kaydet
+                </button>
+
+            </div>
+
+
+            <article id="letterDetail" class="letter-paper">
+
+                <div class="paper-content">
+
+                    <p class="paper-eyebrow">
+                        ÖĞRETMENLER GÜNÜ · 24 KASIM
+                    </p>
+
+                    <h2 id="letterTeacherName"></h2>
+
+                    <div id="letterContent" class="letter-content"></div>
+
+                    <div class="letter-ending">
+                        <p>Saygı ve sevgilerimle,</p>
+                        <p class="signature">Bir öğrenciniz</p>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- ALT EKRAN BUTONLARI -->
+        <div id="letterFooter" class="letter-footer">
+
+            <button id="finalButton" class="secondary-button">
+                Okul Müdürümüzün Mesajı
+            </button>
+
+            <button id="ataturkLetterButton" class="secondary-button">
+                Atatürk'ün Öğretmenlere Mesajı
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MÜDÜR MESAJI -->
+    <section id="finalScreen" class="final-screen" hidden>
+
+        <div class="final-content">
+
+            <p class="eyebrow">ÖZEL MESAJ</p>
+
+            <h1>Okul Müdürümüzden</h1>
+
+            <div id="principalMessage"></div>
+
+            <button id="finalBackButton" class="secondary-button">
+                Mektuplara Dön
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ATATÜRK EKRANI -->
+    <section id="ataturkScreen" class="ataturk-screen" hidden>
+
+        <div class="ataturk-content">
+
+            <p class="eyebrow">BAŞÖĞRETMEN ATATÜRK</p>
+
+            <h1>Bir Milletin Geleceği</h1>
+
+            <div class="ataturk-message">
+
+                <p>
+                    Muallimler!
+                </p>
+
+                <p>
+                    Yeni nesli, Cumhuriyet'in fedakâr öğretmen ve eğitimcileri, sizler yetiştireceksiniz; yeni nesil sizin eseriniz olacaktır.
+                    Eserin kıymeti, sizin beceriniz ve fedakârlığınızın derecesiyle orantılı olacaktır.
+                    Cumhuriyet; fikren, ilmen, fennen, bedenen kuvvetli ve yüksek karakterli muhafızlar ister.
+                    Yeni nesli bu nitelik ve kabiliyette yetiştirmek sizin elinizdedir.
+                    Mümtaz vazifenizin yerine getirilmesine büyük bir özenle varlığınızı vereceğinize hiç şüphe etmem.
+                </p>
+
+                <p>
+                    Öğretmenler!
+                </p>
+
+                <p>
+                    Erkek ve kız çocuklarımızın, aynı suretle bütün tahsil derecelerindeki talim ve terbiyelerinin pratik olması mühimdir.
+                    Memleket evladı, her tahsil derecesinde ekonomik hayatta verimli, etkili ve başarılı olacak surette donatılmalıdır.
+                    Milli terbiyemiz esas olmalıdır.
+                    Artık eğitim ve öğretimde takip edeceğimiz yöntem, bilgiyi insan için fazla bir süs, bir baskı aracı yahut medeni bir zevkten ziyade, maddi hayatta muvaffak olmayı temin eden pratik ve kullanılması mümkün bir cihaz haline getirmektir.
+                    Dünyanın her tarafından öğretmenler insan topluluğunun en fedakâr ve muhterem unsurlarıdır.
+                </p>
+
+                <p>
+                    Gazi Mustafa Kemal Atatürk
+                </p>
+
+                <p>
+                    25 Ağustos 1924, Muallimler Birliği Kongresi
+                </p>
+
+            </div>
+
+            <button id="ataturkBackButton" class="secondary-button">
+                Mektuplara Dön
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
