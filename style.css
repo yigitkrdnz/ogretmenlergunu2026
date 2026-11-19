@@ -943,3 +943,52 @@ h2 {
     }
 }
 
+
+
+
+/* ATATÜRK MESAJI HİZALAMA */
+
+#ataturkScreen .ataturk-content {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#ataturkScreen .ataturk-message {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto 30px;
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.9;
+    overflow-wrap: break-word;
+}
+
+#ataturkScreen .ataturk-message p {
+    display: block;
+    width: 100%;
+    margin: 0 auto 22px;
+    padding: 0;
+    text-align: center !important;
+    text-indent: 0 !important;
+    white-space: normal !important;
+}
+
+#ataturkScreen .ataturk-message p:last-child {
+    margin-bottom: 0;
+    color: var(--light-gold);
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    #ataturkScreen .ataturk-content {
+        padding: 35px 20px;
+    }
+
+    #ataturkScreen .ataturk-message {
+        font-size: 17px;
+        line-height: 1.85;
+    }
+}
+
