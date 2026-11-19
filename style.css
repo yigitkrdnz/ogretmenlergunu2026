@@ -992,3 +992,38 @@ h2 {
     }
 }
 
+
+/* AÇILIŞ EKRANI ALT BOŞLUK */
+
+#welcome.welcome-screen {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#welcome .welcome-content {
+    min-height: auto;
+    padding: 45px 45px 25px;
+    margin: 0 auto;
+}
+
+#welcome .welcome-description {
+    margin-bottom: 20px;
+}
+
+#welcome .main-button {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    #welcome.welcome-screen {
+        padding: 20px;
+    }
+
+    #welcome .welcome-content {
+        padding: 35px 20px 20px;
+    }
+
+    #welcome .welcome-description {
+        margin-bottom: 16px;
+    }
+}
